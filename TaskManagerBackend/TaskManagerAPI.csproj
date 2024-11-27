@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<!-- Alvo do framework -->
+		<TargetFramework>net6.0</TargetFramework>
+		<!-- Substitua por net7.0 se estiver usando .NET 7 -->
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Pacote para integração com PostgreSQL -->
+		<PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+		<PackageReference Include="Npgsql" Version="7.0.2" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.0" />
+		<!-- Pacote para suporte ao Entity Framework Core -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0" />
+		<!-- Pacote para ferramentas do Entity Framework -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0" />
+		<PackageReference Include="System.Text.Json" Version="7.0.2" />
+	</ItemGroup>
+
+</Project>
