@@ -1,47 +1,52 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskManagementAPI.Data;
+using TaskManagementAPI.Helpers;
+using TaskManagementAPI.Models;
 // using TaskManagementBackend.Helpers;
 
-[ApiController]
-[Route("api/[controller]")]
-public class AuthController : ControllerBase
+namespace TaskManagementAPI.Controllers
 {
-    private readonly AppDbContext _context;
-    private readonly JwtHelper _jwtHelper;
-
-    public AuthController(AppDbContext context, JwtHelper jwtHelper)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class AuthController : ControllerBase
     {
-        _context = context;
-        _jwtHelper = jwtHelper;
-    }
+        private readonly AppDbContext _context;
+        private readonly JwtHelper _jwtHelper;
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register(LoginRequest request)
-    {
-        var userExists = _context.Users.Any(u => u.Username == request.Username);
-        if (userExists)
-            return BadRequest("User already exists");
-
-        var user = new User
+        public AuthController(AppDbContext context, JwtHelper jwtHelper)
         {
-            Username = request.Username,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
-        };
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+            _context = context;
+            _jwtHelper = jwtHelper;
+        }
 
-        return Ok("User registered");
-    }
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(LoginRequest request)
+        {
+            var userExists = _context.Users.Any(u => u.Username == request.Username);
+            if (userExists)
+                return BadRequest("User already exists");
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginRequest request)
-    {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
-        if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
-            return Unauthorized();
+            var user = new User
+            {
+                Username = request.Username,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password)
+            };
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
-        var token = _jwtHelper.GenerateToken(user);
-        return Ok(new { Token = token });
+            return Ok("User registered");
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginRequest request)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == request.Username);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
+                return Unauthorized();
+
+            var token = _jwtHelper.GenerateToken(user);
+            return Ok(new { Token = token });
+        }
     }
 }
