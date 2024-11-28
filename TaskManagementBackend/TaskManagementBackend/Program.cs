@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using TaskManagementAPI.Data;
+using TaskManagementAPI.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
