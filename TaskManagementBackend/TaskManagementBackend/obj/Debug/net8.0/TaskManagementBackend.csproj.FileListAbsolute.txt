@@ -1,0 +1,6 @@
+C:\Users\flame\OneDrive\Área de Trabalho\Avonaleback\TaskManagementBackend\TaskManagementBackend\obj\Debug\net8.0\TaskManagementBackend.csproj.AssemblyReference.cache
+C:\Users\flame\OneDrive\Área de Trabalho\Avonaleback\TaskManagementBackend\TaskManagementBackend\obj\Debug\net8.0\TaskManagementBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\flame\OneDrive\Área de Trabalho\Avonaleback\TaskManagementBackend\TaskManagementBackend\obj\Debug\net8.0\TaskManagementBackend.AssemblyInfoInputs.cache
+C:\Users\flame\OneDrive\Área de Trabalho\Avonaleback\TaskManagementBackend\TaskManagementBackend\obj\Debug\net8.0\TaskManagementBackend.AssemblyInfo.cs
+C:\Users\flame\OneDrive\Área de Trabalho\Avonaleback\TaskManagementBackend\TaskManagementBackend\obj\Debug\net8.0\TaskManagementBackend.csproj.CoreCompileInputs.cache
+C:\Users\flame\OneDrive\Área de Trabalho\Avonaleback\TaskManagementBackend\TaskManagementBackend\obj\Debug\net8.0\TaskManagementBackend.MvcApplicationPartsAssemblyInfo.cache
