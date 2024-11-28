@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Reflection.Emit;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using TaskManagementAPI.Models;
 
 namespace TaskManagementAPI.Data
@@ -12,7 +10,7 @@ namespace TaskManagementAPI.Data
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Task> Tasks { get; set; }
+        public DbSet<TaskItem> Tasks { get; set; }
         public DbSet<TaskHistory> TaskHistories { get; set; } // Tabela de histórico
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

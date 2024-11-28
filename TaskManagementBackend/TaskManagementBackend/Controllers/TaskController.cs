@@ -19,9 +19,10 @@ namespace TaskManagementAPI.Controllers
 
         // Criação de uma nova tarefa
         [HttpPost]
-        public async Task<ActionResult<Task>> CreateTask([FromBody] Task newTask)
+        public async Task<ActionResult<Task>> CreateTask([FromBody] TaskItem newTask)
         {
-            var task = await _taskService.CreateTaskAsync(newTask);
+            var user = new User(); // instância do usuário que criou a tarefa
+            var task = await _taskService.CreateTaskAsync(newTask, user.Id); // esse método pede o id do usuário que criou a tarefa, então fiz uma instância do user e passei o id dele, se tiver uma outra lógica so mudar
 
             // Registro no histórico
             var history = new TaskHistory
@@ -38,9 +39,9 @@ namespace TaskManagementAPI.Controllers
 
         // Atualização de uma tarefa existente
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateTask(Guid id, [FromBody] Task updatedTask)
+        public async Task<IActionResult> UpdateTask(int id, [FromBody] TaskItem updatedTask)
         {
-            var task = await _taskService.UpdateTaskAsync(id, updatedTask);
+            var task = await _taskService.UpdateTaskAsync(updatedTask, id);
 
             // Registro no histórico
             var history = new TaskHistory
@@ -57,7 +58,7 @@ namespace TaskManagementAPI.Controllers
 
         // Obter uma tarefa específica
         [HttpGet("{id}")]
-        public async Task<ActionResult<Task>> GetTaskById(Guid id)
+        public async Task<ActionResult<Task>> GetTaskById(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);
             if (task == null)

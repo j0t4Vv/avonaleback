@@ -21,7 +21,7 @@ namespace TaskManagementAPI.Services
         }
 
         // Obtém o histórico de uma tarefa específica
-        public async Task<IEnumerable<TaskHistory>> GetHistoryAsync(Guid taskId)
+        public async Task<IEnumerable<TaskHistory>> GetHistoryAsync(int taskId)
         {
             return await _context.TaskHistories
                 .Where(h => h.TaskId == taskId)
